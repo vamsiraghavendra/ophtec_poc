@@ -45,8 +45,8 @@ class QueryMerger:
     def _get_kb_refinement_prompt(self, role: str, query: str, kb_response: str, category: str = None) -> str:
         """Get role-specific prompt for KB response refinement"""
         prompts = {
-            "doctor": f"""Maintain the technical accuracy of this knowledge base response while
-            organizing it in a clear, structured format suitable for medical professionals.
+            "doctor": f"""Refine this knowledge base response for medical professionals.
+            Remove any metadata or instructional text about the format itself.
             
             Original Question: {query}
             Technical Response: {kb_response}
@@ -55,34 +55,30 @@ class QueryMerger:
             1. Preserve all technical specifications and clinical details
             2. Maintain medical terminology
             3. Structure the information logically
-            4. Focus on procedure-relevant details and specifications
+            4. Remove any text about the format or presentation itself
+            5. Focus only on the medical/technical content
             
             Refined response:""",
             
-            "sales": f"""Transform this technical knowledge base response into a comprehensive sales and marketing guide.
-            First, present the original technical response, then provide a marketing-focused analysis.
+            "sales": f"""Transform this technical response into a sales-friendly format.
+            Remove any metadata or instructional text about the format itself.
             
             Original Question: {query}
             Technical Response: {kb_response}
             
             Structure your response as follows:
-
-            1. TECHNICAL INFORMATION:
-            [Present the original KB response]
-
-            2. MARKETING GUIDE:
-            - Simple Explanation: [Explain each technical term in simple language]
-            - Key Selling Points: [List main benefits and advantages]
-            - Value Proposition: [What makes this product unique]
-            - Target Market: [Who would benefit most from this product]
-            - Competitive Advantages: [What sets it apart from alternatives]
+            1. Simple Explanation
+            2. Key Benefits and Features
+            3. How to Present to Doctors
+            4. Common Questions and Answers
             
-            3. SALES APPROACH:
-            - How to Present to Doctors: [Key talking points]
-            - Handling Common Objections: [Responses to typical concerns]
-            - ROI Discussion Points: [Economic benefits for the practice]
+            Rules:
+            1. Keep language accessible
+            2. Explain technical terms in parentheses
+            3. Focus on benefits and value
+            4. Remove any text about the format or presentation itself
             
-            Please provide the response in this format:"""
+            Response:"""
         }
         return prompts.get(role, prompts["doctor"])
         
