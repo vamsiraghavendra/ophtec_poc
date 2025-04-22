@@ -114,8 +114,8 @@ def main():
             margin: 0 auto;
             position: fixed;
             bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 80px;
+            transform: none;
             z-index: 1000;
             padding-bottom: 10px;
             background: #0E1117;
@@ -125,7 +125,7 @@ def main():
         .mode-label {
             position: fixed;
             bottom: 25px;
-            left: calc(50% - 250px);
+            right: 240px;
             color: white;
             z-index: 1000;
             font-size: 16px;
