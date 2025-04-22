@@ -3,11 +3,11 @@ import os
 from dotenv import load_dotenv
 from main import MedicalQuerySystem
 
-# Replace load_dotenv() with:
+# Load environment variables at startup
 if os.path.exists(".env"):
     load_dotenv()
 
-# Use Streamlit secrets if available, otherwise use environment variables
+# Use Streamlit secrets if available
 if "OPENAI_API_KEY" in st.secrets:
     os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
@@ -17,7 +17,7 @@ def initialize_chat():
             # Verify API key is available and valid
             api_key = os.getenv("OPENAI_API_KEY")
             if not api_key:
-                st.error("OpenAI API key not found. Please check your .env file.")
+                st.error("OpenAI API key not found. Please check your .env file or Streamlit secrets.")
                 return
             if not (api_key.startswith("sk-") or api_key.startswith("sk-proj-")):
                 st.error("Invalid OpenAI API key format. Key should start with 'sk-' or 'sk-proj-'")
@@ -113,23 +113,23 @@ def main():
             max-width: 150px !important;
             margin: 0 auto;
             position: fixed;
-            bottom: 0;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
             background: #0E1117;
         }
 
         /* Add mode selector label */
         .mode-label {
             position: fixed;
-            bottom: 15px;
-            left: calc(50% - 250px);  /* Position relative to the centered dropdown */
+            bottom: 25px;
+            left: calc(50% - 250px);
             color: white;
             z-index: 1000;
             font-size: 16px;
-            background: #0E1117;  /* Match page background */
+            background: #0E1117;
             padding: 5px 10px;
             display: flex;
             align-items: center;
@@ -170,7 +170,7 @@ def main():
 
         /* Adjust chat input position */
         .stChatInput {
-            padding-bottom: 60px !important;
+            padding-bottom: 40px !important;
         }
 
         /* Style sidebar elements */
