@@ -113,8 +113,8 @@ def main():
             max-width: 150px !important;
             margin: 0 auto;
             position: fixed;
-            bottom: 10px;
-            right: 80px;
+            bottom: 15px;
+            right: 95px;
             transform: none;
             z-index: 1000;
             padding-bottom: 10px;
@@ -124,8 +124,8 @@ def main():
         /* Add mode selector label */
         .mode-label {
             position: fixed;
-            bottom: 25px;
-            right: 240px;
+            bottom: 30px;
+            right: 255px;
             color: white;
             z-index: 1000;
             font-size: 16px;
